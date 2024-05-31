@@ -1,0 +1,28 @@
+{
+  "name": "ui-test-playwright-bdd",
+  "version": "1.0.0",
+  "description": "UI-Test-Playwright-BDD is a framework that combines UI testing, the Playwright library, and Behavior-Driven Development (BDD) principles to facilitate efficient and reliable testing of web applications.",
+  "main": "index.js",
+  "scripts": {
+    "test:ui": "npx playwright test --ui",
+    "test:head": "npx playwright test --headed",
+    "generate:report" : "npx playwright show-report",
+    "execute:all": "npx playwright test && npx playwright show-report"
+ 
+  },
+  "keywords": [
+    "playwright,bdd,ts"
+  ],
+  "author": "AndyL",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.4.0",
+    "@playwright/test": "^1.43.1",
+    "@types/node": "^20.12.7",
+    "cucumber-html-reporter": "^6.0.0",
+    "dotenv": "^16.4.5",
+    "playwright": "^1.43.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

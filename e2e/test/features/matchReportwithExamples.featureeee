@@ -1,0 +1,25 @@
+Feature: Display Teams Playing Today
+
+  As a business user
+  I want to see a list of all teams playing today
+  So that I can keep track of today's matches
+
+  Scenario Outline: Display teams playing today with examples
+    Given today's date is "<date>"
+    When I request to see the teams playing today "<date>"
+    Then the system should display the list of "<variant>" teams
+    And there should be at least one "<variant>" team playing today
+
+# # BBC Fixtures has matches every single day so we need a criterion to get no matching teams in matches  
+#   Scenario: No Irish matches today
+#     Given today's date is "2024-04-18"
+#     And there are no Irish matches scheduled for today "2024-04-18"
+#     When I request to see the teams playing today "2024-04-18"
+#     Then the system should display a message indicating no Irish matches today
+
+  Examples: 
+    | date       | variant |
+    | 2024-04-22 | League   |
+    | 2024-04-19 | Women's |
+    | 2024-04-22 | Irish |
+#| 2024-04-18 | Irish   | 0

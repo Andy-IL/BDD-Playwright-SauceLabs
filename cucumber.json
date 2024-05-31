@@ -1,0 +1,12 @@
+{
+  "default": {
+    "dryRun": false,
+    "formatOptions": {
+      "snippetInterface": "async-await"
+    },
+    "paths": ["e2e/test/features/**/*.feature"],
+    "require": ["e2e/test/steps/**/*.ts"],
+    "requireModule": ["ts-node/register"],
+    "format": ["junit"]
+  }
+}

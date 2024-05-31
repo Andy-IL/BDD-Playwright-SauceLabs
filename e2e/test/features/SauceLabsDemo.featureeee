@@ -1,0 +1,46 @@
+Feature:  SauceLabs demo shopping app 
+As a tester
+I want to exercise the saucelabs app
+To practise BDD and PW 
+
+# Background: 
+# Given user navigates to URL
+
+
+Scenario: Log in and validate homepage
+
+Given the saucelabs URL is open at the login page 
+
+When I log in as a standard user 
+Then I see the Products page
+And I see a "Sauce Labs Bike Light" product
+And I see a burger menu 
+And I see a trolley icon
+
+Scenario:  user Log out 
+
+Given the saucelabs URL is open at the login page 
+And I log in as a standard user 
+#When I click the burger menu 
+When I click the Log Out link
+Then the SauceLabs URL is open at the login page
+
+ Scenario: logged-in user checks trolley menu
+# Given I am a logged-in user 
+Given the saucelabs URL is open at the login page 
+And I log in as a standard user 
+When I click the trolley icon 
+Then I see the “Your Cart” page 
+
+# Scenario: logged-in user Continue Shopping from “your cart” page
+# Given I am a logged-in standard user 
+# And  I click the trolley icon 
+# When I click the Continue Shopping button 
+# Then I see Products page
+
+# Scenario: logged-in user buys product
+#  Q too involved? 
+# see e2e.feature
+When I select product "Sauce Labs Bike Light"	
+
+
