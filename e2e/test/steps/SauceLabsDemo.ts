@@ -34,8 +34,8 @@ Given('the saucelabs URL is open at the login page', async () => {
 
 }) ;
 
-When ('I log in as a standard user', async() =>  {
-
+When ('I log in as user {string} and password secret_sauce', async(username: string) =>  {
+console.log("login received parameters: " + username ) ;
   await page.locator('[data-test="username"]').click();
   await page.locator('[data-test="username"]').fill('standard_user');
   await page.locator('[data-test="password"]').click();
@@ -55,8 +55,12 @@ When ('I click the trolley icon', async() =>  {
   
 }) ;
 
-When('I add product "Sauce Labs Bike Light" to trolley', async() =>  {
-  await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
+When('I add product {string} with {string} to trolley', async(product: string, identifier: string) =>  {
+
+  //   await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+  let tempstr = "[data-test=\"add-to-cart-" + identifier + "\"]" ;
+  console.log("assembled locator: " + tempstr) ;
+  await page.locator(tempstr).click();
 
 }) ; 
 
@@ -94,11 +98,6 @@ Then('I see the Products page', async() => {
 
 }) ;
 
-Then('I see a Sauce Labs Bike Light product', async() => {
-  console.log("And Bike Light?  ...") ;
-  await expect(page.locator('[data-test="item-0-title-link"] [data-test="inventory-item-name"]')).toContainText('Sauce Labs Bike Light');
-
-}) ;
 
 Then('I see a burger menu', async() => {
   console.log("And burger menu?  ...") ;
@@ -131,9 +130,11 @@ Then('the checkout page appears', async() => {
 
 } );
 
-Then('the correct details for product "Sauce Labs Bike Light" appear', async() => {
-  await expect(page.locator('[data-test="inventory-item-name"]')).toContainText('Sauce Labs Bike Light');
+Then('the details for product {string} and {string} appear', async(product: string, price:string) => {
+  await expect(page.locator('[data-test="inventory-item-name"]')).toContainText(product);
   await expect(page.locator('[data-test="item-quantity"]')).toContainText('1');
+  await expect(page.locator('[data-test="inventory-item-price"]')).toContainText(price) ;
+
 
 });
 
