@@ -7,6 +7,14 @@
     "paths": ["e2e/test/features/**/*.feature"],
     "require": ["e2e/test/steps/**/*.ts"],
     "requireModule": ["ts-node/register"],
-    "format": ["junit"]
+    "format": [
+      ["junit", 
+      "reports/cucumber_report.xml"
+      ],
+      [
+        "html",
+        "reports/cucumber_report.html"
+      ]
+    ]
   }
 }

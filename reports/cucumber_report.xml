@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<testsuite failures="1" skipped="0" name="cucumber-js" time="28.321322676999998" tests="4">
+  <testcase classname="SauceLabs shopping app E2E" name="log in and buy a product" time="6.890602894">
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+And I log in as user "standard_user" and password secret_sauce............passed
+And I add product "Sauce Labs Bike Light" with "sauce-labs-bike-light" ...passed
+When I click the trolley icon.............................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for product "Sauce Labs Bike Light" and "9.99" appear.....passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+When I click the Finish button............................................passed
+Then the order confirmation message appears...............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="log in and buy a product [1]" time="5.4363610929999995">
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+And I log in as user "standard_user" and password secret_sauce............passed
+And I add product "Sauce Labs Fleece Jacket" with "sauce-labs-fleece-ja...passed
+When I click the trolley icon.............................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for product "Sauce Labs Fleece Jacket" and "49.99" appe...passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+When I click the Finish button............................................passed
+Then the order confirmation message appears...............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="log in and buy a product [2]" time="5.600834792999998">
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+And I log in as user "standard_user" and password secret_sauce............passed
+And I add product "Sauce Labs Bolt T-Shirt" with "sauce-labs-bolt-t-shi...passed
+When I click the trolley icon.............................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for product "Sauce Labs Bolt T-Shirt" and "15.99" appea...passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+When I click the Finish button............................................passed
+Then the order confirmation message appears...............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="log in and buy a product [3]" time="10.393523897">
+    <failure type="Error" message="[31mTimed out 5000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m&#xA;&#xA;Locator: locator('[data-test=&quot;inventory-item-price&quot;]')&#xA;Expected string: [32m&quot;[7m1[27m9.99&quot;[39m&#xA;Received string: [31m&quot;[7m$2[27m9.99&quot;[39m&#xA;Call log:&#xA;  [2m- locator._expect with timeout 5000ms[22m&#xA;[2m  - waiting for locator('[data-test=&quot;inventory-item-price&quot;]')[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;[2m  -   locator resolved to &lt;div class=&quot;inventory_item_price&quot; data-test=&quot;inventor…>$29.99&lt;/div>[22m&#xA;[2m  -   unexpected value &quot;$29.99&quot;[22m&#xA;"><![CDATA[Error: [31mTimed out 5000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m
+
+Locator: locator('[data-test="inventory-item-price"]')
+Expected string: [32m"[7m1[27m9.99"[39m
+Received string: [31m"[7m$2[27m9.99"[39m
+Call log:
+  [2m- locator._expect with timeout 5000ms[22m
+[2m  - waiting for locator('[data-test="inventory-item-price"]')[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+[2m  -   locator resolved to <div class="inventory_item_price" data-test="inventor…>$29.99</div>[22m
+[2m  -   unexpected value "$29.99"[22m
+
+    at Proxy.<anonymous> (C:\Playwright-test\BDD-Playwright-SauceLabs\node_modules\playwright\lib\matchers\expect.js:174:37)
+    at World.<anonymous> (C:\Playwright-test\BDD-Playwright-SauceLabs\e2e\test\steps\SauceLabsDemo.ts:136:68)]]></failure>
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+And I log in as user "standard_user" and password secret_sauce............passed
+And I add product "Sauce Labs Backpack" with "sauce-labs-backpack" to t...passed
+When I click the trolley icon.............................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for product "Sauce Labs Backpack" and "19.99" appear......failed
+When I click the Checkout button.........................................skipped
+Then the checkout page appears...........................................skipped
+When I enter firstName, LastName, postcode...............................skipped
+Then the Checkout: Overview page appears.................................skipped
+When I click the Finish button...........................................skipped
+Then the order confirmation message appears..............................skipped]]></system-out>
+  </testcase>
+</testsuite>
