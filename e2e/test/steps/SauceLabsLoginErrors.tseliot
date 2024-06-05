@@ -1,0 +1,65 @@
+// Steps file for cucumber practice
+// Exercise the errors 
+
+import { Given, When, Then,  AfterAll, setDefaultTimeout, setWorldConstructor } from '@cucumber/cucumber';
+import { chromium, Browser, Page  } from 'playwright';
+import {expect } from '@playwright/test' ;
+import { Then as externalThen} from './thenclauses' ;
+import { world } from './customWorld';
+
+setWorldConstructor(function (this: { world: any, page: any }) {
+  this.world = world;
+  this.page = world.page;
+});
+//  setWorldConstructor (async () {
+//    this.externalThen = externalThen;
+
+//  }) ;
+
+ 
+let browser: Browser;
+let page: Page;
+setDefaultTimeout (15000) ;
+
+ 
+// ############################Basic login tests 
+
+// needs the Given here 
+
+Given('the saucelabs URL is open at the login page', async () => {
+  
+  browser = await chromium.launch({
+   headless: false,
+ });
+ page = await browser.newPage();
+ await page.goto('https://www.saucedemo.com/');
+ await expect(page.locator('#root')).toContainText('Swag Labs');
+
+}) ;
+
+
+  When ('I try to log in as user {string} and password {string}', async(username: string, password: string) =>  {
+    console.log("Attempted login received parameters: " + username + " and " + password) ;
+    await expect(page.locator('#root')).toContainText('Swag Labs');
+    await page.locator('[data-test="username"]').click();
+    await page.locator('[id="user-name"]').click() ;
+    await page.locator('[id="user-name"]').fill(username) ;
+    await page.locator('[id="password"]').click();
+    await page.locator('[id="password"]').fill(password) ;
+    await page.locator('[id="login-button"]').click();
+  
+  }) ;
+  
+  Then('an error message {string} appears' , async(error_msg: string) =>  {
+    console.log ("looking for error: " + error_msg) ;
+    await expect(page.locator('[data-test="error"]')).toContainText(error_msg);
+  
+  } ) ;
+  
+  Then ('the login page stays open', async() =>  {
+    console.log("thenclauses.ts says: did the login page stay up? ")
+    await expect(page.locator('#root')).toContainText('Swag Labs');
+    await expect(page.locator('[data-test="item-0-title-link"] [data-test="inventory-item-name"]')).not.toBeVisible();
+  } ) ; 
+
+export {browser, page}  ; // attempting to pass state to external steps files 

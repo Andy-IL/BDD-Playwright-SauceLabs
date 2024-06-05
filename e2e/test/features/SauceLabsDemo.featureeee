@@ -15,7 +15,7 @@ When I log in as a standard user
 Then I see the Products page
 And I see a "Sauce Labs Bike Light" product
 And I see a burger menu 
-And I see a trolley icon
+And I see a cart icon
 
 Scenario:  user Log out 
 
@@ -25,16 +25,16 @@ And I log in as a standard user
 When I click the Log Out link
 Then the SauceLabs URL is open at the login page
 
- Scenario: logged-in user checks trolley menu
+ Scenario: logged-in user checks basket menu
 # Given I am a logged-in user 
 Given the saucelabs URL is open at the login page 
 And I log in as a standard user 
-When I click the trolley icon 
+When I click the cart icon 
 Then I see the “Your Cart” page 
 
 # Scenario: logged-in user Continue Shopping from “your cart” page
 # Given I am a logged-in standard user 
-# And  I click the trolley icon 
+# And  I click the cart icon 
 # When I click the Continue Shopping button 
 # Then I see Products page
 

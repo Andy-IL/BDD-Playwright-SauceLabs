@@ -1,0 +1,39 @@
+# feature file for e2e tests 
+# Feature: buy > 1 product at a time
+
+Feature:  SauceLabs shopping app E2E
+As a logged-in userI want to buy several products from the list 
+
+Scenario:  log in and buy a product
+Given the saucelabs URL is open at the login page 
+And I log in as user "standard_user" and password "secret_sauce"
+Then I see a cart icon
+
+Scenario: pass parameters
+Given the following products:
+| Sauce Labs Bike Light    | 
+| Sauce Labs Fleece Jacket |
+
+# And I add "<qty>" of product "<product>" with "<identifier>" to basket
+# When I click the basket icon 
+# Then the “Your Cart” page appears
+# And the details for "<qty>" of product "<product>" and price "<price>" appear
+# When I click the Checkout button
+# Then the checkout page appears
+# When I enter firstName, LastName, postcode
+# Then the Checkout: Overview page appears 
+# And the correct price calculations for product "<product>" and price "<price>" appear
+# When I click the Finish button 
+# Then the order confirmation message appears
+# When I click the burger menu
+# Then the logout link appears
+
+# Examples:
+# | product                    | price   | qty    | identifier               | 
+# | Sauce Labs Bike Light      |   9.99  |   1    | sauce-labs-bike-light    | 
+# # | Sauce Labs Fleece Jacket   |  49.99  |   2    | sauce-labs-fleece-jacket | 
+# # | Sauce Labs Bolt T-Shirt    |  15.99  |   1    | sauce-labs-bolt-t-shirt  | 
+# # | Sauce Labs Backpack        |  29.99  |   1    | sauce-labs-backpack      | 
+# # | Sauce Labs Bike Light      |   9.99  |   1    | sauce-labs-bike-light    | 
+
+

@@ -1,0 +1,29 @@
+Feature: assemble a basket
+
+# Scenario: add several items
+# Given I am a logged-in user 
+# And the cart is empty
+
+# Given the following products:
+
+# For (item in items)
+# When I add an item 
+# Then the cart icon number ++ 
+# And the cart should include the item
+
+
+Scenario: remove item from cart
+Given the cart contains several items
+When I remove the top item from the cart
+Then the cart quantity should be decremented
+And the item should be removed
+
+Scenario: add several items and checkout 
+Given I am a logged in user 
+And the cart has more than one item
+When I click the Checkout button 
+Then the checkout page appears
+When I enter firstName, LastName, postcode
+Then the Checkout: Overview page appears 
+And the total price should match the cart items 
+

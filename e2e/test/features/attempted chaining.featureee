@@ -1,0 +1,11 @@
+Feature: attempted chaining
+
+Scenario Outline: User login and logout
+  Given <userState>
+  When <action>
+  Then <result>
+
+Examples:
+  | userState                                   | action   | result |
+  | the saucelabs URL is open at the login page | I try to log in as user "standard_user" and password "bad_passwd"  | the login page stays open | 
+  | user navigates to URL                       | user navigates to URL | the login page Accepted Usernames contains "standard_user"    |
