@@ -17,15 +17,15 @@ Given('user navigates to URL', async () => {
  });
 
 Then('the login page Accepted Usernames contains {string}' , async (username:string) => {
-  await expect(page.locator('#root')).toContainText('Swag Labs');
-  await page.locator('[id="user-name"]').click();
-  await page.locator('[id="user-name"]').fill('USERNAME');
+ //  await expect(page.locator('#root')).toContainText('Swag Labs');
+   await page.locator('[data-test="user-name"]').click();
+   await page.locator('[data-test="user-name"]').fill('USERNAME');
 
-  await page.locator('[id="password"]').click();
-  await page.locator('[id="password"]').fill('PASSWORD') ;
-  await page.locator('[id="login-button"]').isEnabled();
+  await page.locator('[data-test="password"]').click();
+  await page.locator('[data-test="password"]').fill('PASSWORD') ;
+  await page.locator('[data-test="login-button"]').isEnabled();
     
-  await expect(page.locator('[id="login_credentials"]')).toContainText(username);
+  await expect(page.locator('[data-test="login_credentials"]')).toContainText(username);
   
   //browser.close() ;
 

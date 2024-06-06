@@ -1,54 +1,15 @@
 <?xml version="1.0"?>
-<testsuite failures="0" skipped="0" name="cucumber-js" time="17.600968176" tests="6">
-  <testcase classname="SauceLabs shopping app E2E" name="log in" time="9.015105898">
+<testsuite failures="1" skipped="0" name="cucumber-js" time="11.707187596000002" tests="1">
+  <testcase classname="SauceLabs shopping app login logout" name="log in_out" time="11.707187596000002">
+    <failure><![CDATA[Multiple step definitions match:
+  the login page Accepted Usernames contains {string} - e2e\test\steps\SauceLabsDemo.ts:259    
+  the login page Accepted Usernames contains {string} - e2e\test\steps\SauceLabsLoginPage.ts:19]]></failure>
     <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
-And I log in as user "standard_user" and password "secret_sauce"..........passed
+When I log in as user "standard_user" and password "secret_sauce".........passed
 Then the Products page appears............................................passed
-And the cart items count is zero (not visible)............................passed]]></system-out>
-  </testcase>
-  <testcase classname="SauceLabs shopping app E2E" name="buy products" time="1.7592347959999999">
-    <system-out><![CDATA[When I add "1" of product "Sauce Labs Bike Light" with "sauce-labs-bike...passed
-Then the cart items count increments......................................passed
-When I click the cart icon................................................passed
-Then the “Your Cart” page appears.........................................passed
-And the details for "1" of product "Sauce Labs Bike Light" with "sauce-...passed
-When I click the Continue Shopping button.................................passed
-Then the Products page appears............................................passed]]></system-out>
-  </testcase>
-  <testcase classname="SauceLabs shopping app E2E" name="buy products [1]" time="1.729205696">
-    <system-out><![CDATA[When I add "1" of product "Sauce Labs Fleece Jacket" with "sauce-labs-f...passed
-Then the cart items count increments......................................passed
-When I click the cart icon................................................passed
-Then the “Your Cart” page appears.........................................passed
-And the details for "1" of product "Sauce Labs Fleece Jacket" with "sau...passed
-When I click the Continue Shopping button.................................passed
-Then the Products page appears............................................passed]]></system-out>
-  </testcase>
-  <testcase classname="SauceLabs shopping app E2E" name="buy products [2]" time="1.6847888960000001">
-    <system-out><![CDATA[When I add "1" of product "Sauce Labs Onesie" with "sauce-labs-onesie" ...passed
-Then the cart items count increments......................................passed
-When I click the cart icon................................................passed
-Then the “Your Cart” page appears.........................................passed
-And the details for "1" of product "Sauce Labs Onesie" with "sauce-labs...passed
-When I click the Continue Shopping button.................................passed
-Then the Products page appears............................................passed]]></system-out>
-  </testcase>
-  <testcase classname="SauceLabs shopping app E2E" name="buy products [3]" time="1.694625895">
-    <system-out><![CDATA[When I add "1" of product "Sauce Labs Bolt T-Shirt" with "sauce-labs-bo...passed
-Then the cart items count increments......................................passed
-When I click the cart icon................................................passed
-Then the “Your Cart” page appears.........................................passed
-And the details for "1" of product "Sauce Labs Bolt T-Shirt" with "sauc...passed
-When I click the Continue Shopping button.................................passed
-Then the Products page appears............................................passed]]></system-out>
-  </testcase>
-  <testcase classname="SauceLabs shopping app E2E" name="buy products [4]" time="1.718006995">
-    <system-out><![CDATA[When I add "1" of product "Sauce Labs Backpack" with "sauce-labs-backpa...passed
-Then the cart items count increments......................................passed
-When I click the cart icon................................................passed
-Then the “Your Cart” page appears.........................................passed
-And the details for "1" of product "Sauce Labs Backpack" with "sauce-la...passed
-When I click the Continue Shopping button.................................passed
-Then the Products page appears............................................passed]]></system-out>
+And the cart items count is zero (not visible)............................passed
+When I click the burger menu..............................................passed
+And I click the Log Out link..............................................passed
+Then the login page Accepted Usernames contains "standard_user"........ambiguous]]></system-out>
   </testcase>
 </testsuite>

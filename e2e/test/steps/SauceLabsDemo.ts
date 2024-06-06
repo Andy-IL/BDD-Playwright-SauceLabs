@@ -12,7 +12,7 @@ setDefaultTimeout (15000) ;
   
 // global value 
 let cartItemCount = 0 ; 
-let itemsPriceTotal = 0.00 ; 
+let exTaxPriceTotal = 0.00 ; 
 let cartPriceTotal = 0.00 ;
 let VATRate = 0.08 ;
 // basics  here
@@ -51,7 +51,7 @@ Then ('the Products page appears', async () => {
 
 Then ('the cart items count is zero \\(not visible\\)', async() =>  {
   await expect(page.locator('[data-test="shopping-cart-badge"]')).not.toBeVisible();
-  console.log ("Trolley empty, expected  " + cartItemCount + " items found") ;
+  console.log ("Trolley  " + cartItemCount + " items found") ;
 
 }) ;
 Then ('the cart items count increments', async() =>  {
@@ -65,28 +65,17 @@ Then ('the cart items count increments', async() =>  {
   console.log ("Trolley shows badge str : " + tempstr + ", badge int: " + latestCount +"  and " + cartItemCount + " items") ;
 } ) ;
 
-Then ('the cart total increases by {string}', async(price: string) =>  {
- // VATRate, cartPriceTotal, itemsPriceTotal are  globals 
+Then ('the running subtotal increases by {string}', async(price: string) =>  {
 // global values
-// let itemsPriceTotal = 0.00 ; 
-// let cartPriceTotal = 0.00 ;
-//  let VATRate = 0.08 ;
+// let exTaxPriceTotal = 0.00 ; 
 
- // calculate expectation
+ // calculate latest subtotal
   let itemPrice = parseFloat (price) ;
-  let itemTax = itemPrice * VATRate ; // caution re: rounding
-// Keeping track of the total price
-   itemsPriceTotal  = itemsPriceTotal + itemPrice  ; 
-   cartPriceTotal = cartPriceTotal + itemsPriceTotal + itemTax ;
-   console.log ("Expected price of items is " + itemsPriceTotal + " tax is " + itemTax +" and grand total should be: " + cartPriceTotal) ;
+ // Keeping track of the total price
+   exTaxPriceTotal  = exTaxPriceTotal + itemPrice  ;
+   // cartPriceTotal = cartPriceTotal + itemsPriceTotal + itemTax ;
+   console.log ("Expected ex tax subtotal now: " + exTaxPriceTotal ) ;
 
-   // Get the actuals 
-   let itemsPriceTotalStr  ='Got: ' ;
-      itemsPriceTotalStr = itemsPriceTotalStr + await page.locator('[data-test="subtotal-label"]').textContent () ;
-   let totalTaxStr = await page.locator('[data-test="tax-label"]').textContent () ;
-   let cartPriceTotalStr =   await page.locator('[data-test="total-label"]').textContent() ;
- 
-console.log ("Got items  total: " + itemsPriceTotalStr  + ", tax : " + totalTaxStr + ", and total: " + cartPriceTotalStr)  ;
 } ) ;
 
 // ############################ navigation and screen checks
@@ -156,13 +145,13 @@ When ('I click the Continue Shopping button', async() =>  {
 }) ;
 
 // ############################ Logout 
-Then ('the logout link appears', async() =>  {
+Then ('the Logout link appears', async() =>  {
   await page.locator('[data-test="logout-sidebar-link"]').isVisible();
 }) ;
 
 When ('I click the Log Out link', async() =>  {
-  await page.getByRole('button', { name: 'Open Menu' }).click();
   await page.locator('[data-test="logout-sidebar-link"]').click();
+  
 }) ;
 
 
@@ -212,13 +201,27 @@ Then('the Checkout: Overview page appears', async() => {
 
 }) ;
 Then ('the correct price calculations for product {string} and price {string} appear', async(product: string, price:string) => {
-  await expect(page.locator('[data-test="inventory-item-name"]')).toContainText(product);
-  await expect(page.locator('[data-test="inventory-item-price"]')).toContainText(price) ;
-//   let totalPriceStr = await (page.locator('[data-test="inventory-item-price"]')).getText().toInt()
-//   let int taxExpected =  await (page.locator('[data-test="tax-label"]')).
-  await expect(page.locator('[data-test="subtotal-label"]')).toContainText(price);
-  await expect(page.locator('[data-test="tax-label"]')).toContainText('Tax: $');
-  await expect(page.locator('[data-test="total-label"]')).toContainText('Total: $');
+// Assume this method follows Then (the running total increases by "<price>")
+// which Keeps track of the total price  
+// global values
+//  exTaxPriceTotal  ; 
+//  cartPriceTotal  ;
+//  VATRate ;
+
+ // calculate expectation
+
+  let totalTax = exTaxPriceTotal * VATRate ; // caution re: rounding
+  cartPriceTotal = cartPriceTotal + exTaxPriceTotal + totalTax ;
+  console.log ("Calculated total price of items is " + exTaxPriceTotal + " tax is " + totalTax +" and grand total should be: " + cartPriceTotal) ;
+  
+  let subTotalStr = "Item total: $" + exTaxPriceTotal.toFixed(2) ;
+  let taxString = "Tax: $" + totalTax.toFixed(2) ;
+  let cartPriceTotalStr = "Total: $" + cartPriceTotal.toFixed(2) ;
+  console.log ("Expected total price of items is " + subTotalStr + " tax is " + taxString +" and grand total should be: " + cartPriceTotalStr) ;
+
+  await expect(page.locator('[data-test="subtotal-label"]')).toContainText(subTotalStr);
+  await expect(page.locator('[data-test="tax-label"]')).toContainText(taxString);
+  await expect(page.locator('[data-test="total-label"]')).toContainText(cartPriceTotalStr);
   
 
 } ) ;
@@ -252,3 +255,18 @@ Then ('the login page stays open', async() =>  {
   await expect(page.locator('#root')).toContainText('Swag Labs');
   await expect(page.locator('[data-test="item-0-title-link"] [data-test="inventory-item-name"]')).not.toBeVisible();
 } ) ; 
+
+Then('the login page Accepted Usernames contains {string}' , async (username:string) => {
+    await expect(page.locator('#root')).toContainText('Swag Labs');
+    await page.locator('[data-test="user-name"]').click();
+    await page.locator('[data-test="user-name"]').fill('USERNAME');
+ 
+   await page.locator('[data-test="password"]').click();
+   await page.locator('[data-test="password"]').fill('PASSWORD') ;
+   await page.locator('[data-test="login-button"]').isEnabled();
+     
+   await expect(page.locator('[data-test="login_credentials"]')).toContainText(username);
+   
+   //browser.close() ;
+ 
+ }) ;

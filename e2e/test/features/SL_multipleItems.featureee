@@ -6,18 +6,20 @@ As a logged-in user I want to buy several products in a transaction
 
 Scenario:  log in 
 Given the saucelabs URL is open at the login page 
-And I log in as user "standard_user" and password "secret_sauce"
+When I log in as user "standard_user" and password "secret_sauce"
 Then the Products page appears
 And the cart items count is zero (not visible)
 
 Scenario Outline: buy products
-
+# Given I am a logged-in user 
+Given the Products page appears
 When I add "<qty>" of product "<product>" with "<identifier>" to cart
 Then the cart items count increments
+And the running subtotal increases by "<price>"
+
 When I click the cart icon 
 Then the “Your Cart” page appears
 And the details for "<qty>" of product "<product>" with "<identifier>" and price "<price>" appear
-# And the cart total increases by "<price>"
 When I click the Continue Shopping button
 Then the Products page appears
 
@@ -25,6 +27,7 @@ Then the Products page appears
 # Then the checkout page appears
 # When I enter firstName, LastName, postcode
 # Then the Checkout: Overview page appears 
+# And the cart total increases by "<price>"
 # And the correct price calculations for product "<product>" and price "<price>" appear
 #  When I click the Finish button 
 #  Then the order confirmation message appears
