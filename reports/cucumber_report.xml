@@ -1,15 +1,16 @@
 <?xml version="1.0"?>
-<testsuite failures="1" skipped="0" name="cucumber-js" time="11.707187596000002" tests="1">
-  <testcase classname="SauceLabs shopping app login logout" name="log in_out" time="11.707187596000002">
-    <failure><![CDATA[Multiple step definitions match:
-  the login page Accepted Usernames contains {string} - e2e\test\steps\SauceLabsDemo.ts:259    
-  the login page Accepted Usernames contains {string} - e2e\test\steps\SauceLabsLoginPage.ts:19]]></failure>
+<testsuite failures="1" skipped="0" name="cucumber-js" time="27.315747495" tests="1">
+  <testcase classname="SauceLabs shopping app login logout" name="log in_out" time="27.315747495">
+    <failure type="Error" message="function timed out, ensure the promise resolves within 15000 milliseconds"><![CDATA[Error: function timed out, ensure the promise resolves within 15000 milliseconds
+    at Timeout.<anonymous> (C:\Playwright-test\BDD-Playwright-SauceLabs\node_modules\@cucumber\cucumber\src\time.ts:52:14)
+    at listOnTimeout (node:internal/timers:573:17)
+    at processTimers (node:internal/timers:514:7)]]></failure>
     <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
 When I log in as user "standard_user" and password "secret_sauce".........passed
 Then the Products page appears............................................passed
 And the cart items count is zero (not visible)............................passed
 When I click the burger menu..............................................passed
 And I click the Log Out link..............................................passed
-Then the login page Accepted Usernames contains "standard_user"........ambiguous]]></system-out>
+Then the login page Accepted Usernames contains "standard_user"...........failed]]></system-out>
   </testcase>
 </testsuite>
