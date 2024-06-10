@@ -1,16 +1,325 @@
 <?xml version="1.0"?>
-<testsuite failures="1" skipped="0" name="cucumber-js" time="27.315747495" tests="1">
-  <testcase classname="SauceLabs shopping app login logout" name="log in_out" time="27.315747495">
-    <failure type="Error" message="function timed out, ensure the promise resolves within 15000 milliseconds"><![CDATA[Error: function timed out, ensure the promise resolves within 15000 milliseconds
-    at Timeout.<anonymous> (C:\Playwright-test\BDD-Playwright-SauceLabs\node_modules\@cucumber\cucumber\src\time.ts:52:14)
-    at listOnTimeout (node:internal/timers:573:17)
-    at processTimers (node:internal/timers:514:7)]]></failure>
+<testsuite failures="0" skipped="0" name="cucumber-js" time="70.887502648" tests="18">
+  <testcase classname="SauceLabs shopping app login logout" name="log in_out" time="7.388296595999999">
     <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
 When I log in as user "standard_user" and password "secret_sauce".........passed
 Then the Products page appears............................................passed
 And the cart items count is zero (not visible)............................passed
 When I click the burger menu..............................................passed
 And I click the Log Out link..............................................passed
-Then the login page Accepted Usernames contains "standard_user"...........failed]]></system-out>
+Then the login page Accepted Usernames contains "standard_user"...........passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="log in" time="5.796476098">
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+When I log in as user "standard_user" and password "secret_sauce".........passed
+Then the Products page appears............................................passed
+And the cart items count is zero (not visible)............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products" time="3.67777388">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Bike Light" with "sauce-labs-bike...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "9.99"..............................passed
+And the Remove button for "sauce-labs-bike-light" appears.................passed
+When I click the Remove button for "sauce-labs-bike-light"................passed
+Then the cart items count decrements......................................passed
+And the running subtotal decreases by "9.99"..............................passed
+When I add "1" of product "Sauce Labs Bike Light" with "sauce-labs-bike...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "9.99"..............................passed
+And the Remove button for "sauce-labs-bike-light" appears.................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Bike Light" with "sauce-...passed
+And the Remove button for "sauce-labs-bike-light" appears.................passed
+When I click the Remove button for "sauce-labs-bike-light"................passed
+Then the running subtotal decreases by "9.99".............................passed
+When I click the Continue Shopping button.................................passed
+Then the Products page appears............................................passed
+When I add "1" of product "Sauce Labs Bike Light" with "sauce-labs-bike...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "9.99"..............................passed
+And the Remove button for "sauce-labs-bike-light" appears.................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Bike Light" with "sauce-...passed
+And the Remove button for "sauce-labs-bike-light" appears.................passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Bike Light" ...passed
+When I click the Finish button............................................passed
+Then the order confirmation message appears...............................passed
+When I click the Back Home button.........................................passed
+Then the Products page appears............................................passed
+And the cart items count is zero (not visible)............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products [1]" time="3.504463181999999">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Backpack" with "sauce-labs-backpa...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "29.99".............................passed
+And the Remove button for "sauce-labs-backpack" appears...................passed
+When I click the Remove button for "sauce-labs-backpack"..................passed
+Then the cart items count decrements......................................passed
+And the running subtotal decreases by "29.99".............................passed
+When I add "1" of product "Sauce Labs Backpack" with "sauce-labs-backpa...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "29.99".............................passed
+And the Remove button for "sauce-labs-backpack" appears...................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Backpack" with "sauce-la...passed
+And the Remove button for "sauce-labs-backpack" appears...................passed
+When I click the Remove button for "sauce-labs-backpack"..................passed
+Then the running subtotal decreases by "29.99"............................passed
+When I click the Continue Shopping button.................................passed
+Then the Products page appears............................................passed
+When I add "1" of product "Sauce Labs Backpack" with "sauce-labs-backpa...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "29.99".............................passed
+And the Remove button for "sauce-labs-backpack" appears...................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Backpack" with "sauce-la...passed
+And the Remove button for "sauce-labs-backpack" appears...................passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Backpack" an...passed
+When I click the Finish button............................................passed
+Then the order confirmation message appears...............................passed
+When I click the Back Home button.........................................passed
+Then the Products page appears............................................passed
+And the cart items count is zero (not visible)............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products [2]" time="3.534528877000001">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Fleece Jacket" with "sauce-labs-f...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "49.99".............................passed
+And the Remove button for "sauce-labs-fleece-jacket" appears..............passed
+When I click the Remove button for "sauce-labs-fleece-jacket".............passed
+Then the cart items count decrements......................................passed
+And the running subtotal decreases by "49.99".............................passed
+When I add "1" of product "Sauce Labs Fleece Jacket" with "sauce-labs-f...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "49.99".............................passed
+And the Remove button for "sauce-labs-fleece-jacket" appears..............passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Fleece Jacket" with "sau...passed
+And the Remove button for "sauce-labs-fleece-jacket" appears..............passed
+When I click the Remove button for "sauce-labs-fleece-jacket".............passed
+Then the running subtotal decreases by "49.99"............................passed
+When I click the Continue Shopping button.................................passed
+Then the Products page appears............................................passed
+When I add "1" of product "Sauce Labs Fleece Jacket" with "sauce-labs-f...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "49.99".............................passed
+And the Remove button for "sauce-labs-fleece-jacket" appears..............passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Fleece Jacket" with "sau...passed
+And the Remove button for "sauce-labs-fleece-jacket" appears..............passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Fleece Jacke...passed
+When I click the Finish button............................................passed
+Then the order confirmation message appears...............................passed
+When I click the Back Home button.........................................passed
+Then the Products page appears............................................passed
+And the cart items count is zero (not visible)............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products [3]" time="3.688502776">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Onesie" with "sauce-labs-onesie" ...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "7.99"..............................passed
+And the Remove button for "sauce-labs-onesie" appears.....................passed
+When I click the Remove button for "sauce-labs-onesie"....................passed
+Then the cart items count decrements......................................passed
+And the running subtotal decreases by "7.99"..............................passed
+When I add "1" of product "Sauce Labs Onesie" with "sauce-labs-onesie" ...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "7.99"..............................passed
+And the Remove button for "sauce-labs-onesie" appears.....................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Onesie" with "sauce-labs...passed
+And the Remove button for "sauce-labs-onesie" appears.....................passed
+When I click the Remove button for "sauce-labs-onesie"....................passed
+Then the running subtotal decreases by "7.99".............................passed
+When I click the Continue Shopping button.................................passed
+Then the Products page appears............................................passed
+When I add "1" of product "Sauce Labs Onesie" with "sauce-labs-onesie" ...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "7.99"..............................passed
+And the Remove button for "sauce-labs-onesie" appears.....................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Onesie" with "sauce-labs...passed
+And the Remove button for "sauce-labs-onesie" appears.....................passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Onesie" and ...passed
+When I click the Finish button............................................passed
+Then the order confirmation message appears...............................passed
+When I click the Back Home button.........................................passed
+Then the Products page appears............................................passed
+And the cart items count is zero (not visible)............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products [4]" time="3.485958684">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Bolt T-Shirt" with "sauce-labs-bo...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "15.99".............................passed
+And the Remove button for "sauce-labs-bolt-t-shirt" appears...............passed
+When I click the Remove button for "sauce-labs-bolt-t-shirt"..............passed
+Then the cart items count decrements......................................passed
+And the running subtotal decreases by "15.99".............................passed
+When I add "1" of product "Sauce Labs Bolt T-Shirt" with "sauce-labs-bo...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "15.99".............................passed
+And the Remove button for "sauce-labs-bolt-t-shirt" appears...............passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Bolt T-Shirt" with "sauc...passed
+And the Remove button for "sauce-labs-bolt-t-shirt" appears...............passed
+When I click the Remove button for "sauce-labs-bolt-t-shirt"..............passed
+Then the running subtotal decreases by "15.99"............................passed
+When I click the Continue Shopping button.................................passed
+Then the Products page appears............................................passed
+When I add "1" of product "Sauce Labs Bolt T-Shirt" with "sauce-labs-bo...passed
+Then the cart items count increments......................................passed
+And the running subtotal increases by "15.99".............................passed
+And the Remove button for "sauce-labs-bolt-t-shirt" appears...............passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Bolt T-Shirt" with "sauc...passed
+And the Remove button for "sauce-labs-bolt-t-shirt" appears...............passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Bolt T-Shirt...passed
+When I click the Finish button............................................passed
+Then the order confirmation message appears...............................passed
+When I click the Back Home button.........................................passed
+Then the Products page appears............................................passed
+And the cart items count is zero (not visible)............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="log in [1]" time="4.405733698000001">
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+When I log in as user "standard_user" and password "secret_sauce".........passed
+Then the Products page appears............................................passed
+And the cart items count is zero (not visible)............................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products [5]" time="2.2702244910000005">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Bike Light" with "sauce-labs-bike...passed
+Then the cart items count increments......................................passed
+And the Remove button for "sauce-labs-bike-light" appears.................passed
+And the running subtotal increases by "9.99"..............................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Bike Light" with "sauce-...passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Bike Light" ...passed
+When I click the Cancel button............................................passed
+Then the Products page appears............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products [6]" time="2.071609292">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Backpack" with "sauce-labs-backpa...passed
+Then the cart items count increments......................................passed
+And the Remove button for "sauce-labs-backpack" appears...................passed
+And the running subtotal increases by "29.99".............................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Backpack" with "sauce-la...passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Backpack" an...passed
+When I click the Cancel button............................................passed
+Then the Products page appears............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products [7]" time="2.0776655920000002">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Fleece Jacket" with "sauce-labs-f...passed
+Then the cart items count increments......................................passed
+And the Remove button for "sauce-labs-fleece-jacket" appears..............passed
+And the running subtotal increases by "49.99".............................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Fleece Jacket" with "sau...passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Fleece Jacke...passed
+When I click the Cancel button............................................passed
+Then the Products page appears............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs shopping app E2E" name="buy products [8]" time="2.0884193929999997">
+    <system-out><![CDATA[Given the Products page appears...........................................passed
+When I add "1" of product "Sauce Labs Onesie" with "sauce-labs-onesie" ...passed
+Then the cart items count increments......................................passed
+And the Remove button for "sauce-labs-onesie" appears.....................passed
+And the running subtotal increases by "7.99"..............................passed
+When I click the cart icon................................................passed
+Then the “Your Cart” page appears.........................................passed
+And the details for "1" of product "Sauce Labs Onesie" with "sauce-labs...passed
+When I click the Checkout button..........................................passed
+Then the checkout page appears............................................passed
+When I enter firstName, LastName, postcode................................passed
+Then the Checkout: Overview page appears..................................passed
+And the correct price calculations for product "Sauce Labs Onesie" and ...passed
+When I click the Cancel button............................................passed
+Then the Products page appears............................................passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs login and navigation" name="check login error handling" time="4.736278897000001">
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+When I try to log in as user "standard_user" and password "bad_pass"......passed
+Then the login page stays open............................................passed
+And an error message "Epic sadface: Username and password do not match ...passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs login and navigation" name="check login error handling [1]" time="5.261315197999999">
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+When I try to log in as user "locked_out_user" and password "secret_sau...passed
+Then the login page stays open............................................passed
+And an error message "Epic sadface: Sorry, this user has been locked ou...passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs login and navigation" name="check login error handling [2]" time="5.1220222">
+    <system-out><![CDATA[Given the saucelabs URL is open at the login page.........................passed
+When I try to log in as user "" and password ""...........................passed
+Then the login page stays open............................................passed
+And an error message "Epic sadface: Username is required" appears.........passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs login page checks" name="check login page" time="3.658291697">
+    <system-out><![CDATA[Given user navigates to URL...............................................passed
+Then the login page Accepted Usernames contains "standard_user"...........passed
+And the login page Password for all users contains "secret_sauce".........passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs login page checks" name="check login page [1]" time="3.737108599">
+    <system-out><![CDATA[Given user navigates to URL...............................................passed
+Then the login page Accepted Usernames contains "locked_out_user".........passed
+And the login page Password for all users contains "secret_sauce".........passed]]></system-out>
+  </testcase>
+  <testcase classname="SauceLabs login page checks" name="check login page [2]" time="4.382833498">
+    <system-out><![CDATA[Given user navigates to URL...............................................passed
+Then the login page Accepted Usernames contains "problem_user"............passed
+And the login page Password for all users contains "secret_sauce".........passed]]></system-out>
   </testcase>
 </testsuite>

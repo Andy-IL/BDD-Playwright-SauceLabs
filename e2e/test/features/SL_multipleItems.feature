@@ -15,30 +15,34 @@ Scenario Outline: buy products
 Given the Products page appears
 When I add "<qty>" of product "<product>" with "<identifier>" to cart
 Then the cart items count increments
+And the Remove button for "<identifier>" appears
 And the running subtotal increases by "<price>"
 
 When I click the cart icon 
 Then the “Your Cart” page appears
 And the details for "<qty>" of product "<product>" with "<identifier>" and price "<price>" appear
-When I click the Continue Shopping button
-Then the Products page appears
+# When I click the Continue Shopping button
+# Then the Products page appears
 
-# When I click the Checkout button
-# Then the checkout page appears
-# When I enter firstName, LastName, postcode
-# Then the Checkout: Overview page appears 
-# And the cart total increases by "<price>"
-# And the correct price calculations for product "<product>" and price "<price>" appear
+ When I click the Checkout button
+ Then the checkout page appears
+ When I enter firstName, LastName, postcode
+ Then the Checkout: Overview page appears 
+ And the correct price calculations for product "<product>" and price "<price>" appear
+When I click the Cancel button
+Then the Products page appears
+# Here's actual purchase
 #  When I click the Finish button 
 #  Then the order confirmation message appears
 #  When I click the Back Home button 
 #  Then the Products page appears
+# And the cart items count is zero (not visible)
 
 Examples:
 | product                    | price   | qty    | identifier               | 
 | Sauce Labs Bike Light      |   9.99  |   1    | sauce-labs-bike-light    | 
+| Sauce Labs Backpack        |  29.99  |   1    | sauce-labs-backpack      | 
 | Sauce Labs Fleece Jacket   |  49.99  |   1    | sauce-labs-fleece-jacket | 
 | Sauce Labs Onesie          |  7.99   |   1    | sauce-labs-onesie        | 
-| Sauce Labs Bolt T-Shirt    |  15.99  |   1    | sauce-labs-bolt-t-shirt  | 
-| Sauce Labs Backpack        |  29.99  |   1    | sauce-labs-backpack      | 
+# | Sauce Labs Bolt T-Shirt    |  15.99  |   1    | sauce-labs-bolt-t-shirt  | 
 #| Test.allTheThings() T-Shirt (Red)      |   9.99  |   1    | sauce-labs-bike-light    | 

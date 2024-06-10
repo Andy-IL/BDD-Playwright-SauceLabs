@@ -8,9 +8,9 @@ import { Then as externalThen} from './thenclauses' ;
 
 let browser: Browser;
 let page: Page;
-setDefaultTimeout (15000) ;
+setDefaultTimeout (12000) ;
   
-// global value 
+// global values
 let cartItemCount = 0 ; 
 let exTaxPriceTotal = 0.00 ; 
 let cartPriceTotal = 0.00 ;
@@ -18,8 +18,9 @@ let VATRate = 0.08 ;
 // basics  here
 Given('the saucelabs URL is open at the login page', async () => {
   browser = await chromium.launch({
-     slowMo: 500 ,   
-      headless: false, });
+     slowMo: 150 ,   
+      headless: false,
+     });
  page = await browser.newPage();
  await page.goto('https://www.saucedemo.com/');
  await expect(page.locator('#root')).toContainText('Swag Labs');
@@ -51,9 +52,17 @@ Then ('the Products page appears', async () => {
 
 Then ('the cart items count is zero \\(not visible\\)', async() =>  {
   await expect(page.locator('[data-test="shopping-cart-badge"]')).not.toBeVisible();
-  console.log ("Trolley  " + cartItemCount + " items found") ;
+  console.log ("Trolley should have no items:  " + cartItemCount + " items found") ;
 
 }) ;
+Then ('the Remove button for {string} appears', async(identifier: string) =>  {
+  let tempstrRemove = "[data-test=\"remove-" + identifier + "\"]" ;
+  
+  await expect(page.locator(tempstrRemove)).toContainText('Remove');
+
+} ) ; 
+
+
 Then ('the cart items count increments', async() =>  {
   let tempstr = '' ;
   cartItemCount = cartItemCount + 1 ;  // global 
@@ -62,22 +71,49 @@ Then ('the cart items count increments', async() =>  {
 // e.g.  await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('1');
   
    expect (latestCount === cartItemCount) ;
-  console.log ("Trolley shows badge str : " + tempstr + ", badge int: " + latestCount +"  and " + cartItemCount + " items") ;
+  console.log ("Trolley shows badge str++ : " + tempstr + ", badge int: " + latestCount +"  and " + cartItemCount + " items") ;
+} ) ;
+
+Then ('the cart items count decrements', async() =>  {
+  let tempstr = '' ;
+  let latestCount = 0 ;
+  cartItemCount = cartItemCount - 1 ;  // global 
+  if (cartItemCount == 0) {  
+    await expect(page.locator('[data-test="shopping-cart-badge"]')).not.toBeVisible();
+    console.log ("found nothing in cart") ;
+  } else {
+    tempstr = tempstr + await (page.locator('[data-test="shopping-cart-badge"]').textContent()) ;
+    latestCount = parseInt(tempstr, 10) ;
+  
+  }
+// e.g.  await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('1');
+  
+   expect (latestCount === cartItemCount) ;
+  console.log ("Trolley shows badge str-- : " + tempstr + ", badge int: " + latestCount +"  and " + cartItemCount + " items") ;
 } ) ;
 
 Then ('the running subtotal increases by {string}', async(price: string) =>  {
-// global values
-// let exTaxPriceTotal = 0.00 ; 
+// global values  exTaxPriceTotal
 
  // calculate latest subtotal
   let itemPrice = parseFloat (price) ;
  // Keeping track of the total price
    exTaxPriceTotal  = exTaxPriceTotal + itemPrice  ;
-   // cartPriceTotal = cartPriceTotal + itemsPriceTotal + itemTax ;
    console.log ("Expected ex tax subtotal now: " + exTaxPriceTotal ) ;
 
 } ) ;
 
+Then ('the running subtotal decreases by {string}', async(price: string) =>  {
+  // global value exTaxPriceTotal 
+  
+   // calculate latest subtotal
+    let itemPrice = parseFloat (price) ;
+   // Keeping track of the total price
+     exTaxPriceTotal  = exTaxPriceTotal - itemPrice  ;
+     console.log ("Expected ex tax subtotal now: " + exTaxPriceTotal ) ;
+  
+  } ) ;
+  
 // ############################ navigation and screen checks
 When ('I click the burger menu', async() =>  {
   await page.getByRole('button', { name: 'Open Menu' }).click();
@@ -88,7 +124,6 @@ When ('I click the cart icon', async() =>  {
   await page.locator('[data-test="shopping-cart-link"]').click();
   
 }) ;
-
 // ############################ Fill basket
 When('I add {string} of product {string} with {string} to cart', async(qty: string, product: string, identifier: string) =>  {
 
@@ -105,6 +140,14 @@ When('I add {string} of product {string} with {string} to cart', async(qty: stri
   await expect(page.locator(tempstrRemove)).toContainText('Remove');
 
 }) ; 
+When ('I click the Remove button for {string}', async(identifier: string) =>  { 
+  let tempstrRemove = "[data-test=\"remove-" + identifier + "\"]" ;
+ // let tempstrAdd = "[data-test=\"add-to-cart-" + identifier + "\"]" ;
+  await page.locator(tempstrRemove).click();
+// check that the button changes IF AT POroducts page
+// await expect(page.locator(tempstrAdd)).toContainText('Add to cart');
+  
+} ) ;
 
 // ############################ Checkout
 When ('I click the Checkout button', async() =>  {
@@ -200,6 +243,10 @@ Then('the Checkout: Overview page appears', async() => {
   await expect(page.locator('[data-test="total-label"]')).toContainText('Total: $');
 
 }) ;
+When ('I click the Cancel button', async() => {
+  await page.locator('[data-test="cancel"]').click() ;
+
+}  ) ;
 Then ('the correct price calculations for product {string} and price {string} appear', async(product: string, price:string) => {
 // Assume this method follows Then (the running total increases by "<price>")
 // which Keeps track of the total price  
@@ -211,8 +258,8 @@ Then ('the correct price calculations for product {string} and price {string} ap
  // calculate expectation
 
   let totalTax = exTaxPriceTotal * VATRate ; // caution re: rounding
-  cartPriceTotal = cartPriceTotal + exTaxPriceTotal + totalTax ;
-  console.log ("Calculated total price of items is " + exTaxPriceTotal + " tax is " + totalTax +" and grand total should be: " + cartPriceTotal) ;
+  cartPriceTotal =  exTaxPriceTotal + totalTax ;
+  console.log ("Calculated total price of items is " + exTaxPriceTotal + " tax is " + totalTax +" and calculated grand total: " + cartPriceTotal) ;
   
   let subTotalStr = "Item total: $" + exTaxPriceTotal.toFixed(2) ;
   let taxString = "Tax: $" + totalTax.toFixed(2) ;
@@ -227,11 +274,23 @@ Then ('the correct price calculations for product {string} and price {string} ap
 } ) ;
 Then('the order confirmation message appears', async() => {
   await expect(page.locator('[data-test="complete-header"]')).toContainText('Thank you for your order!');
+  //  After buying totals are 0
+  exTaxPriceTotal = 0.00 ; 
+  cartPriceTotal  = 0.00 ;
+  cartItemCount = 0
   await expect(page.locator('[data-test="back-to-products"]')).toBeVisible();
-
+ console.log("Back  to products.  exTaxPriceTotal = " + exTaxPriceTotal + " and cartPriceTotal = " + cartPriceTotal + "itemCount = " + cartItemCount )
 }) ;
 
 // ##########################  LoginErrors - uses Given ('the saucelabs URL is open at the login page' etc )
+Given('user navigates to URL', async () => {
+  browser = await chromium.launch({
+   headless: false
+ });
+ page = await browser.newPage();
+ await page.goto('https://www.saucedemo.com/');
+});
+
 When ('I try to log in as user {string} and password {string}', async(username: string, password: string) =>  {
   console.log("Attempted login received parameters: " + username + " and " + password) ;
   await expect(page.locator('#root')).toContainText('Swag Labs');
@@ -257,16 +316,20 @@ Then ('the login page stays open', async() =>  {
 } ) ; 
 
 Then('the login page Accepted Usernames contains {string}' , async (username:string) => {
-    await expect(page.locator('#root')).toContainText('Swag Labs');
-    await page.locator('[data-test="user-name"]').click();
-    await page.locator('[data-test="user-name"]').fill('USERNAME');
- 
+     await expect(page.locator('#root')).toContainText('Swag Labs');
+     await page.locator('[data-test="username"]').click();
+     await page.locator('[data-test="username"]').fill('USERNAME');
+     
    await page.locator('[data-test="password"]').click();
    await page.locator('[data-test="password"]').fill('PASSWORD') ;
    await page.locator('[data-test="login-button"]').isEnabled();
      
-   await expect(page.locator('[data-test="login_credentials"]')).toContainText(username);
+   await expect(page.locator('[data-test="login-credentials"]')).toContainText(username);
    
    //browser.close() ;
  
  }) ;
+ Then ('the login page Password for all users contains {string}', async (password:string) => {
+  await expect(page.locator('[data-test="login-password"]')).toContainText(password);
+
+} ) ;
