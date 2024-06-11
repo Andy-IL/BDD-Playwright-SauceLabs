@@ -11,7 +11,7 @@ Then the Products page appears
 And the cart items count is zero (not visible)
 
 
-Scenario Outline: buy products
+Scenario Outline: add, remove, replace and buy products
 # Given I am a logged-in user 
 Given the Products page appears
 When I add "<qty>" of product "<product>" with "<identifier>" to cart
