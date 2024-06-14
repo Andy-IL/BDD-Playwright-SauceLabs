@@ -3,14 +3,14 @@
 
 Feature:  SauceLabs login and navigation
 As a test visitor I want to check log in error handling
-
+@loginerrors
 Scenario Outline: check login error handling
 
 Given the saucelabs URL is open at the login page 
 When  I try to log in as user "<username>" and password "<password>"
 Then the login page stays open
 And an error message "<error_msg>" appears
-
+When I close the browser
 
 Examples: 
 | username      | password      | error_msg  | 

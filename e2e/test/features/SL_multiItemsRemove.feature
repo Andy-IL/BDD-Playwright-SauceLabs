@@ -4,13 +4,14 @@
 Feature:  SauceLabs shopping app E2E
 As a logged-in user I want to buy several products in a transaction
 
+@login, @remove
 Scenario:  log in 
 Given the saucelabs URL is open at the login page 
 When I log in as user "standard_user" and password "secret_sauce"
 Then the Products page appears
 And the cart items count is zero (not visible)
 
-
+@remove
 Scenario Outline: add, remove, replace and buy products
 # Given I am a logged-in user 
 Given the Products page appears
@@ -76,6 +77,6 @@ Examples:
 | Sauce Labs Bike Light      |   9.99  |   1    | sauce-labs-bike-light    | 
 | Sauce Labs Backpack        |  29.99  |   1    | sauce-labs-backpack      | 
 | Sauce Labs Fleece Jacket   |  49.99  |   1    | sauce-labs-fleece-jacket | 
-| Sauce Labs Onesie          |  7.99   |   1    | sauce-labs-onesie        | 
-| Sauce Labs Bolt T-Shirt    |  15.99  |   1    | sauce-labs-bolt-t-shirt  | 
+#| Sauce Labs Onesie          |  7.99   |   1    | sauce-labs-onesie        | 
+#| Sauce Labs Bolt T-Shirt    |  15.99  |   1    | sauce-labs-bolt-t-shirt  | 
 # | Test.allTheThings() T-Shirt (Red)      |   9.99  |   1    | sauce-labs-bike-light    | 

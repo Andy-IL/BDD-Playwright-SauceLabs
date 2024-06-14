@@ -333,3 +333,8 @@ Then('the login page Accepted Usernames contains {string}' , async (username:str
   await expect(page.locator('[data-test="login-password"]')).toContainText(password);
 
 } ) ;
+
+When('I close the browser', async() =>  {
+await browser.close() ;
+
+}) ;
